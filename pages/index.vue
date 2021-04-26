@@ -2,36 +2,36 @@
   <div class="container">
     <div>
       <h2 class="title">
-        Un savoir inutile par jour !
+        A useless knowledge per day!
       </h2>
-      <br>
+      <br />
       <h1 class="subtitle">
-        {{phrase}}
+        {{ phrase }}
       </h1>
-      <button class="button" @click="update">Un nouveau savoir</button>
+      <button class="button" @click="update">New knowledge</button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-const api = 'https://uselessfacts.jsph.pl/random.json?language=en';
+const api = "https://uselessfacts.jsph.pl/random.json?language=en";
 
 export default {
-  data(){
-    return{
-      phrase: "",
+  data() {
+    return {
+      phrase: ""
+    };
+  },
+  methods: {
+    update() {
+      axios.get(api).then(response => (this.phrase = response.data.text));
     }
   },
-  methods:{
-    update(){
-      axios.get(api).then(response => this.phrase = response.data.text);
-    }
-  },
-  mounted(){
-    axios.get(api).then(response => this.phrase = response.data.text);
+  mounted() {
+    axios.get(api).then(response => (this.phrase = response.data.text));
   }
-}
+};
 </script>
 
 <style>
@@ -45,16 +45,8 @@ export default {
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 50px;
@@ -71,7 +63,7 @@ export default {
 }
 
 .button {
-  background-color: #4CAF50;
+  background-color: #3bb67dc5;
   color: white;
   padding: 16px 32px;
   text-align: center;
@@ -83,4 +75,16 @@ export default {
   cursor: pointer;
 }
 
+.button:hover {
+  background-color: #3bb67d;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
 </style>
